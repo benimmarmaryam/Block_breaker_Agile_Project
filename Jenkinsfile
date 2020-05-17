@@ -8,6 +8,7 @@ pipeline {
     
       steps {
         echo 'build'
+        sh 'make'
       }
     }
     
@@ -15,6 +16,8 @@ pipeline {
     
       steps {
         echo 'test'
+        sh 'make check || true' 
+        junit '**/target/*.xml'
       }
     }
     
@@ -22,6 +25,7 @@ pipeline {
     
       steps {
         echo 'deploy'
+        sh 'make publish'
       }
     }
   }
